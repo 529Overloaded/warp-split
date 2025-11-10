@@ -18,11 +18,11 @@ export const TokenDisplay = memo(({ tokens, tokenIds }: TokenDisplayProps) => {
   return (
     <div className="space-y-4 animate-slide-in">
       <div className="flex items-center justify-between">
-        <p className="text-xs md:text-sm opacity-60">{tokens.length} tokens</p>
+        <p className="text-secondary">{tokens.length} tokens</p>
         {tokenIds && (
           <button
             onClick={() => setShowIds(!showIds)}
-            className="text-xs md:text-sm opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+            className="button-secondary interactive-hover"
           >
             {showIds ? 'show tokens' : 'show ids'}
           </button>
@@ -32,7 +32,7 @@ export const TokenDisplay = memo(({ tokens, tokenIds }: TokenDisplayProps) => {
         {tokens.map((token, idx) => (
           <span
             key={idx}
-            className="px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light transition-all duration-300 hover:scale-110 cursor-default animate-slide-in"
+            className="token-badge-lg animate-slide-in"
             style={{ 
               backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length],
               animationDelay: `${idx * 0.02}s`

@@ -72,3 +72,45 @@ All colors MUST be HSL.
 .animate-slide-in {
   animation: slideIn 0.6s ease-out forwards;
 }
+
+/* Section wrapper for consistent layout */
+@layer components {
+  .section-wrapper {
+    @apply min-h-screen w-full flex items-center justify-center p-4 md:p-8;
+  }
+
+  .section-content {
+    @apply max-w-6xl w-full animate-slide-in;
+  }
+
+  /* Typography */
+  .heading-section {
+    @apply text-3xl md:text-6xl font-light;
+  }
+
+  .text-secondary {
+    @apply text-xs md:text-sm !text-foreground opacity-60;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-300 hover:scale-105;
+  }
+
+  .interactive-hover-small {
+    @apply transition-all duration-300 hover:scale-110;
+  }
+
+  .button-secondary {
+    @apply text-secondary hover:opacity-100 cursor-pointer;
+  }
+
+  /* Token badges */
+  .token-badge {
+    @apply px-3 py-2 rounded text-xs md:text-sm transition-all duration-300 hover:scale-110 cursor-default;
+  }
+
+  .token-badge-lg {
+    @apply px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light transition-all duration-300 hover:scale-110 cursor-default;
+  }
+}

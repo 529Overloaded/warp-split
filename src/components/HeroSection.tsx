@@ -32,13 +32,13 @@ export const HeroSection = memo(() => {
   }, [currentText]);
 
   return (
-    <section className="min-h-screen w-full flex items-center justify-center p-4">
+    <section className="section-wrapper">
       <div className="flex flex-wrap gap-2 md:gap-4 justify-center max-w-6xl">
         {tokens.map((token, idx) => (
           <span
             key={`${currentText}-${idx}`}
-            className="text-3xl md:text-5xl lg:text-7xl font-light px-4 md:px-6 py-2 md:py-4 rounded animate-slide-in hover:scale-105 transition-transform duration-300"
-            style={{ 
+            className="text-3xl md:text-5xl lg:text-7xl font-light px-4 md:px-6 py-2 md:py-4 rounded animate-slide-in interactive-hover"
+            style={{
               backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length],
               animationDelay: `${idx * 0.05}s`
             }}

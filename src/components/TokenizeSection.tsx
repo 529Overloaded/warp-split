@@ -58,25 +58,25 @@ export const TokenizeSection = memo(() => {
   }, [modelName, text, tokenizeText]);
 
   return (
-    <section className="min-h-screen w-full flex items-center justify-center p-4 md:p-8">
-      <div className="max-w-6xl w-full space-y-12 md:space-y-16 animate-slide-in">
-        <h2 className="text-3xl md:text-6xl font-light">{SECTION_TITLE}</h2>
+    <section className="section-wrapper">
+      <div className="section-content space-y-12 md:space-y-16">
+        <h2 className="heading-section">{SECTION_TITLE}</h2>
         
         <div className="space-y-8 md:space-y-12">
           <div className="space-y-4">
-            <label className="text-xs md:text-sm opacity-60">model</label>
+            <label className="text-secondary">model</label>
             <Input
               value={modelName}
               onChange={(e) => setModelName(e.target.value)}
               placeholder="bert-base-uncased"
               className="bg-card text-sm md:text-base transition-all"
             />
-            {loading && <p className="text-xs md:text-sm opacity-60 animate-pulse">loading...</p>}
+            {loading && <p className="text-secondary animate-pulse">loading...</p>}
             {error && <p className="text-xs md:text-sm text-destructive animate-slide-in">{error}</p>}
           </div>
 
           <div className="space-y-4">
-            <label className="text-xs md:text-sm opacity-60">text</label>
+            <label className="text-secondary">text</label>
             <Textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
