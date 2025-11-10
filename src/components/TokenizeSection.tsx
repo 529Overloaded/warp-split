@@ -59,7 +59,7 @@ export const TokenizeSection = memo(() => {
 
   return (
     <section className="min-h-screen w-full flex items-center justify-center p-4 md:p-8">
-      <div className="max-w-4xl w-full space-y-12 md:space-y-16 animate-slide-in">
+      <div className="max-w-6xl w-full space-y-12 md:space-y-16 animate-slide-in">
         <h2 className="text-3xl md:text-6xl font-light">{SECTION_TITLE}</h2>
         
         <div className="space-y-8 md:space-y-12">
