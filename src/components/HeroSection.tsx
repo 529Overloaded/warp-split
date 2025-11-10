@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 const SAMPLE_TEXTS = [
-  "tokenization",
-  "subword units",
-  "transformer models",
-  "neural networks",
-  "language processing",
+  "neural networks learn patterns",
+  "transformers revolutionized NLP",
+  "tokens are subword units",
+  "embeddings capture meaning",
+  "attention mechanisms focus context"
 ];
 
 const TOKEN_COLORS = [
@@ -15,14 +15,14 @@ const TOKEN_COLORS = [
   "hsl(var(--token-4))"
 ];
 
-export const HeroSection = () => {
+export const HeroSection = memo(() => {
   const [currentText, setCurrentText] = useState(0);
   const [tokens, setTokens] = useState<string[]>([]);
 
   useEffect(() => {
     const text = SAMPLE_TEXTS[currentText];
-    const chars = text.split('');
-    setTokens(chars);
+    const words = text.split(' ');
+    setTokens(words);
 
     const interval = setInterval(() => {
       setCurrentText((prev) => (prev + 1) % SAMPLE_TEXTS.length);
@@ -37,7 +37,7 @@ export const HeroSection = () => {
         {tokens.map((token, idx) => (
           <span
             key={`${currentText}-${idx}`}
-            className="text-4xl md:text-6xl lg:text-8xl font-light px-3 md:px-6 py-2 md:py-4 rounded animate-slide-in"
+            className="text-3xl md:text-5xl lg:text-7xl font-light px-4 md:px-6 py-2 md:py-4 rounded animate-slide-in hover:scale-105 transition-transform duration-300"
             style={{ 
               backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length],
               animationDelay: `${idx * 0.05}s`
@@ -49,4 +49,4 @@ export const HeroSection = () => {
       </div>
     </section>
   );
-};
+});

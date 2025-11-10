@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 interface TokenDisplayProps {
   tokens: string[];
@@ -12,17 +12,17 @@ const TOKEN_COLORS = [
   "hsl(var(--token-4))"
 ];
 
-export const TokenDisplay = ({ tokens, tokenIds }: TokenDisplayProps) => {
+export const TokenDisplay = memo(({ tokens, tokenIds }: TokenDisplayProps) => {
   const [showIds, setShowIds] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 animate-slide-in">
       <div className="flex items-center justify-between">
         <p className="text-xs md:text-sm opacity-60">{tokens.length} tokens</p>
         {tokenIds && (
           <button
             onClick={() => setShowIds(!showIds)}
-            className="text-xs md:text-sm opacity-60 hover:opacity-100 transition-opacity"
+            className="text-xs md:text-sm opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
           >
             {showIds ? 'show tokens' : 'show ids'}
           </button>
@@ -32,8 +32,11 @@ export const TokenDisplay = ({ tokens, tokenIds }: TokenDisplayProps) => {
         {tokens.map((token, idx) => (
           <span
             key={idx}
-            className="px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light"
-            style={{ backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length] }}
+            className="px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light transition-all duration-300 hover:scale-110 cursor-default animate-slide-in"
+            style={{ 
+              backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length],
+              animationDelay: `${idx * 0.02}s`
+            }}
           >
             {showIds && tokenIds ? tokenIds[idx] : token}
           </span>
@@ -41,4 +44,4 @@ export const TokenDisplay = ({ tokens, tokenIds }: TokenDisplayProps) => {
       </div>
     </div>
   );
-};
+});
