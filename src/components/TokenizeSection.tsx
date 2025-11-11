@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useCallback, memo } from "react";
-import { AutoTokenizer } from "@huggingface/transformers";
+import { useState, useEffect, useRef, memo } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { TokenDisplay } from "./TokenDisplay";
+import { useTokenizer } from "@/hooks/useTokenizer";
 
 const DEFAULT_TEXT = "tokenizers process text efficiently";
 const SECTION_TITLE = "tokenize";
@@ -10,40 +10,9 @@ const SECTION_TITLE = "tokenize";
 export const TokenizeSection = memo(() => {
   const [modelName, setModelName] = useState("bert-base-uncased");
   const [text, setText] = useState(DEFAULT_TEXT);
-  const [tokens, setTokens] = useState<string[]>([]);
-  const [tokenIds, setTokenIds] = useState<number[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { tokens, tokenIds, loading, error, tokenizeText } = useTokenizer();
   
-  const tokenizerCache = useRef<Map<string, any>>(new Map());
   const debounceTimer = useRef<NodeJS.Timeout>();
-
-  const tokenizeText = useCallback(async (model: string, inputText: string) => {
-    if (!inputText.trim() || !model.trim()) return;
-    
-    setLoading(true);
-    setError("");
-    
-    try {
-      let tokenizer = tokenizerCache.current.get(model);
-      
-      if (!tokenizer) {
-        tokenizer = await AutoTokenizer.from_pretrained(model);
-        tokenizerCache.current.set(model, tokenizer);
-      }
-      
-      const ids = tokenizer.encode(inputText);
-      const tokensList = ids.map((id: number) => tokenizer.decode([id]));
-      setTokens(tokensList);
-      setTokenIds(ids);
-    } catch (err) {
-      setError("model load failed");
-      setTokens([]);
-      setTokenIds([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
 
   useEffect(() => {
     if (debounceTimer.current) clearTimeout(debounceTimer.current);

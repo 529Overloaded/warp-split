@@ -3,16 +3,20 @@ import { Navigation } from "./Navigation";
 import { HeroSection } from "./HeroSection";
 import { LearnSection } from "./LearnSection";
 import { TokenizeSection } from "./TokenizeSection";
+import { CompareSection } from "./CompareSection";
+import { CreateSection } from "./CreateSection";
 
 export const TokenizerExplainer = () => {
-  const [currentSection, setCurrentSection] = useState<'hero' | 'learn' | 'tokenize'>('hero');
+  const [currentSection, setCurrentSection] = useState<'hero' | 'learn' | 'tokenize' | 'compare' | 'create'>('hero');
   const heroRef = useRef<HTMLDivElement>(null);
   const learnRef = useRef<HTMLDivElement>(null);
   const tokenizeRef = useRef<HTMLDivElement>(null);
+  const compareRef = useRef<HTMLDivElement>(null);
+  const createRef = useRef<HTMLDivElement>(null);
 
-  const handleNavigate = (section: 'hero' | 'learn' | 'tokenize') => {
+  const handleNavigate = (section: 'hero' | 'learn' | 'tokenize' | 'compare' | 'create') => {
     setCurrentSection(section);
-    const refs = { hero: heroRef, learn: learnRef, tokenize: tokenizeRef };
+    const refs = { hero: heroRef, learn: learnRef, tokenize: tokenizeRef, compare: compareRef, create: createRef };
     refs[section].current?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -30,6 +34,14 @@ export const TokenizerExplainer = () => {
       
       <div ref={tokenizeRef}>
         <TokenizeSection />
+      </div>
+      
+      <div ref={compareRef}>
+        <CompareSection />
+      </div>
+      
+      <div ref={createRef}>
+        <CreateSection />
       </div>
     </div>
   );
