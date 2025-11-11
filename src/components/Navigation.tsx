@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 interface NavigationProps {
-  onNavigate: (section: 'hero' | 'learn' | 'tokenize' | 'compare' | 'create') => void;
+  onNavigate: (section: 'hero' | 'learn' | 'tokenize' | 'create') => void;
   currentSection: string;
 }
 
@@ -20,7 +20,7 @@ export const Navigation = ({ onNavigate, currentSection }: NavigationProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavigate = (section: 'hero' | 'learn' | 'tokenize' | 'compare' | 'create') => {
+  const handleNavigate = (section: 'hero' | 'learn' | 'tokenize' | 'create') => {
     setMinimized(true);
     onNavigate(section);
   };
@@ -51,12 +51,6 @@ export const Navigation = ({ onNavigate, currentSection }: NavigationProps) => {
           className={`hover:opacity-60 transition-opacity ${currentSection === 'tokenize' ? 'opacity-100' : 'opacity-40'}`}
         >
           tokenize
-        </button>
-        <button
-          onClick={() => handleNavigate('compare')}
-          className={`hover:opacity-60 transition-opacity ${currentSection === 'compare' ? 'opacity-100' : 'opacity-40'}`}
-        >
-          compare
         </button>
         <button
           onClick={() => handleNavigate('create')}
