@@ -1,5 +1,5 @@
 import { TokenDisplay } from "@/components/TokenDisplay";
-import { Card } from "@/components/ui/Card";
+import { Card } from "@/components/ui/card";
 import { FormField } from "@/components/ui/FormField";
 import { Input } from "@/components/ui/input";
 import { StatDisplay } from "@/components/ui/StatDisplay";
