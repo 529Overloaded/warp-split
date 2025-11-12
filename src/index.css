@@ -7,110 +7,173 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 5%;
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 0 0% 5%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 5%;
+		--card: 0 0% 98%;
+		--card-foreground: 0 0% 5%;
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 0 0% 5%;
+		--popover: 0 0% 98%;
+		--popover-foreground: 0 0% 5%;
 
-    --primary: 0 0% 10%;
-    --primary-foreground: 0 0% 98%;
+		--primary: 0 0% 10%;
+		--primary-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 10%;
+		--secondary: 0 0% 95%;
+		--secondary-foreground: 0 0% 10%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 40%;
+		--muted: 0 0% 96%;
+		--muted-foreground: 0 0% 40%;
 
-    --accent: 0 0% 92%;
-    --accent-foreground: 0 0% 10%;
+		--accent: 0 0% 92%;
+		--accent-foreground: 0 0% 10%;
 
-    --destructive: 0 65% 55%;
-    --destructive-foreground: 0 0% 98%;
+		--destructive: 0 65% 55%;
+		--destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+		--border: 0 0% 90%;
+		--input: 0 0% 90%;
+		--ring: 0 0% 10%;
 
-    --radius: 0.125rem;
+		--radius: 0.125rem;
 
-    --token-1: 45 85% 70%;
-    --token-2: 180 70% 75%;
-    --token-3: 280 65% 75%;
-    --token-4: 130 60% 70%;
-  }
+		--token-1: 45 85% 70%;
+		--token-2: 180 70% 75%;
+		--token-3: 280 65% 75%;
+		--token-4: 130 60% 70%;
+	}
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
+	* {
+		@apply border-border;
+	}
 
-  body {
-    @apply bg-background text-foreground font-mono;
-  }
+	body {
+		@apply bg-background text-foreground font-mono;
+	}
 }
 
 @keyframes tokenize {
-  0%, 100% { opacity: 0.3; transform: scale(0.95); }
-  50% { opacity: 1; transform: scale(1); }
+	0%,
+	100% {
+		opacity: 0.3;
+		transform: scale(0.95);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 @keyframes slideIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(40px) scale(0.96);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
+
+@keyframes fadeOutDown {
+	from {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-40px) scale(0.96);
+	}
+}
+
+@keyframes slideInRight {
+	from {
+		opacity: 0;
+		transform: translateX(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 .animate-tokenize {
-  animation: tokenize 2s ease-in-out infinite;
+	animation: tokenize 2s ease-in-out infinite;
 }
 
 .animate-slide-in {
-  animation: slideIn 0.6s ease-out forwards;
+	animation: slideIn 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-out-down {
+	animation: fadeOutDown 0.5s cubic-bezier(0.32, 0, 0.67, 0) forwards;
+}
+
+.animate-slide-in-right {
+	animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Section wrapper for consistent layout */
 @layer components {
-  .section-wrapper {
-    @apply min-h-screen w-full flex items-center justify-center p-4 md:p-8;
-  }
+	.section-wrapper {
+		@apply min-h-screen w-full flex items-center justify-center p-4 md:p-8;
+	}
 
-  .section-content {
-    @apply max-w-6xl w-full animate-slide-in;
-  }
+	.section-content {
+		@apply max-w-6xl w-full animate-slide-in;
+	}
 
-  /* Typography */
-  .heading-section {
-    @apply text-3xl md:text-6xl font-light;
-  }
+	/* Typography */
+	.heading-section {
+		@apply text-3xl md:text-6xl font-light;
+	}
 
-  .text-secondary {
-    @apply text-xs md:text-sm !text-foreground opacity-60;
-  }
+	.text-secondary {
+		@apply text-xs md:text-sm !text-foreground opacity-60;
+	}
 
-  /* Interactive elements */
-  .interactive-hover {
-    @apply transition-all duration-300 hover:scale-105;
-  }
+	/* Interactive elements with Japandi-style transitions */
+	.interactive-hover {
+		@apply transition-all duration-300 ease-out hover:scale-105;
+	}
 
-  .interactive-hover-small {
-    @apply transition-all duration-300 hover:scale-110;
-  }
+	.interactive-hover-small {
+		@apply transition-all duration-300 ease-out hover:scale-110;
+	}
 
-  .button-secondary {
-    @apply text-secondary hover:opacity-100 cursor-pointer;
-  }
+	.button-secondary {
+		@apply text-secondary hover:opacity-100 cursor-pointer transition-opacity duration-200;
+	}
 
-  /* Token badges */
-  .token-badge {
-    @apply px-3 py-2 rounded text-xs md:text-sm transition-all duration-300 hover:scale-110 cursor-default;
-  }
+	/* Token badges with refined hover states */
+	.token-badge {
+		@apply px-3 py-2 rounded text-xs md:text-sm transition-all duration-300 ease-out hover:scale-110 cursor-default;
+	}
 
-  .token-badge-lg {
-    @apply px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light transition-all duration-300 hover:scale-110 cursor-default;
-  }
+	.token-badge-lg {
+		@apply px-3 md:px-4 py-2 md:py-3 rounded text-sm md:text-base font-light transition-all duration-300 ease-out hover:scale-110 cursor-default;
+	}
+
+	/* Smooth transitions for cards */
+	.card-transition {
+		@apply transition-all duration-500 ease-in-out;
+	}
 }

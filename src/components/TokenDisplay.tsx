@@ -1,47 +1,42 @@
-import { useState, memo } from "react";
+import { memo, useState } from "react";
+import { getAnimationDelay, getTokenColor } from "@/lib/constants";
 
 interface TokenDisplayProps {
-  tokens: string[];
-  tokenIds?: number[];
+	tokens: string[];
+	tokenIds?: number[];
 }
 
-const TOKEN_COLORS = [
-  "hsl(var(--token-1))",
-  "hsl(var(--token-2))",
-  "hsl(var(--token-3))",
-  "hsl(var(--token-4))"
-];
-
 export const TokenDisplay = memo(({ tokens, tokenIds }: TokenDisplayProps) => {
-  const [showIds, setShowIds] = useState(false);
+	const [showIds, setShowIds] = useState(false);
 
-  return (
-    <div className="space-y-4 animate-slide-in">
-      <div className="flex items-center justify-between">
-        <p className="text-secondary">{tokens.length} tokens</p>
-        {tokenIds && (
+	return (
+		<div className="space-y-4 animate-slide-in">
+			<div className="flex items-center justify-between">
+				<p className="text-secondary">{tokens.length} tokens</p>
+				{tokenIds && (
           <button
+            type="button"
             onClick={() => setShowIds(!showIds)}
             className="button-secondary interactive-hover"
           >
-            {showIds ? 'show tokens' : 'show ids'}
-          </button>
-        )}
-      </div>
-      <div className="flex flex-wrap gap-2 md:gap-3">
+						{showIds ? "show tokens" : "show ids"}
+					</button>
+				)}
+			</div>
+			<div className="flex flex-wrap gap-2 md:gap-3">
         {tokens.map((token, idx) => (
           <span
-            key={idx}
+            key={`${token}-${idx}`}
             className="token-badge-lg animate-slide-in"
-            style={{ 
-              backgroundColor: TOKEN_COLORS[idx % TOKEN_COLORS.length],
-              animationDelay: `${idx * 0.02}s`
+            style={{
+              backgroundColor: getTokenColor(idx),
+              animationDelay: getAnimationDelay(idx, 0.02),
             }}
           >
             {showIds && tokenIds ? tokenIds[idx] : token}
           </span>
         ))}
-      </div>
-    </div>
-  );
+			</div>
+		</div>
+	);
 });

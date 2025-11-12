@@ -1,7 +1,7 @@
 import { TokenizerExplainer } from "@/components/TokenizerExplainer";
 
 const Index = () => {
-  return <TokenizerExplainer />;
+	return <TokenizerExplainer />;
 };
 
 export default Index;
