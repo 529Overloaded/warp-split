@@ -90,8 +90,8 @@ export const CreateSection = memo(() => {
                       <button
                         type="button"
                         className={`space-y-3 cursor-pointer transition-all duration-500 animate-slide-in ${activeStep === step.id
-                            ? "scale-105"
-                            : "hover:scale-105"
+                          ? "scale-105"
+                          : "hover:scale-105"
                           }`}
                         style={{ animationDelay: getAnimationDelay(idx, 0.1) }}
                         onMouseEnter={() => setActiveStep(step.id)}
@@ -100,8 +100,8 @@ export const CreateSection = memo(() => {
                         <div className="flex flex-col items-center">
                           <span
                             className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-light transition-all duration-500 ${activeStep === step.id
-                                ? "ring-2 ring-foreground ring-offset-2"
-                                : ""
+                              ? "ring-2 ring-foreground ring-offset-2"
+                              : ""
                               }`}
                             style={{ backgroundColor: getTokenColor(idx) }}
                           >
@@ -114,8 +114,8 @@ export const CreateSection = memo(() => {
                           </h4>
                           <code
                             className={`block text-xs bg-card p-2 rounded mt-2 transition-all duration-500 ${activeStep === step.id
-                                ? "opacity-100 bg-accent"
-                                : "opacity-60"
+                              ? "opacity-100 bg-accent"
+                              : "opacity-60"
                               }`}
                           >
                             {step.example}
